@@ -10,6 +10,37 @@ stringArray.forEach(character => {
   let alphaIndex = character.charCodeAt(0);
 });
 
-// No I don't. I can still run node because it's on my local computer. The only reason to do npm init is for packages and to start a node server.
+console.log('flag');
 
-// This LeetCode folder is the intention of adding all the coding I do on leetcode to store as solutions. Mainly so that I can look back and reason through the logic.
+let sampleObject = {
+  cat: "catnip",
+  3: "somevalue",
+  true: 20,
+  name: function() {return 'catsname'}
+}
+
+console.log(sampleObject);
+console.log(Object.keys(sampleObject));
+
+console.log(JSON.stringify(sampleObject));
+
+let someString = "{\"name\":\"grape\",\"num\":3}"; 
+console.log(someString);
+
+console.log(typeof JSON.parse(someString));
+console.log(JSON.parse(someString).num);
+
+
+var Person = function(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stringSent = function() {
+    return "Hello, my name is " + this.name + " d I'm " + this.age;
+  }
+}
+// Person.prototype.stringSentence = function() {
+//   return "Hello, my name is " + this.name + " and I'm " + this.age;
+// }
+
+let someInstance = new Person('john', 25);
+console.log(someInstance.stringSent());

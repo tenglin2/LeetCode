@@ -31,6 +31,7 @@ const peakIndexInMountainArray = function(A) {
 // Using a typical forEach is not optimal because we don't want to go through the all whole array and a while loop is good because we don't know the exact number of iterations.
 
 // Super easy implementation. Uses the Math.max function and takes the arguments of the array using the spread operator. Should have done that fron the start.
+// Should note that accepted answer might be off because of repeated numbers.
 
 // var peakIndexInMountainArray = function(A) {
 //   return A.indexOf(Math.max(...A));

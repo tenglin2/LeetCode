@@ -24,3 +24,26 @@ const Anagram = function(string1, string2) {
 
   return true;
 };
+
+// Alternative - similar logic except it uses a single object and decrements the values. Could use cleaner for/of loops.
+// Decrement logic works because we use a lookup each time and a 0 value is falsey.
+function validAnagram(first, second) {
+  if (first.length !== second.length) return false;
+
+  const lookup = {};
+
+  for (let i = 0; i < first.length; i++) {
+    let letter = first[i];
+    // If lookup[letter] is not inside the object --> undefined, then we set to 1, otherwise increment by 1. Works because undefined is a falsey value for conditional statement.
+    lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1;
+  }
+
+  for (let i = 0; i < second.length; i++) {
+    let letter = second[i];
+    if (!lookup[letter]) return false;
+    // Decrement logic which mutates the lookup object.
+    else lookup[letter] -= 1;
+  }
+
+  return true;
+}

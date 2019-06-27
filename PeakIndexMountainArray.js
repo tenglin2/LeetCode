@@ -35,4 +35,4 @@ const peakIndexInMountainArray = function(A) {
 
 // var peakIndexInMountainArray = function(A) {
 //   return A.indexOf(Math.max(...A));
-};
+// };

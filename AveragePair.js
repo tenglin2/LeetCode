@@ -24,3 +24,16 @@ const averagePair = function(pairArray, targetAvg) {
   // No pair found equal to target average.
   return false;
 };
+
+// Official Solution
+function averagePair(arr, num){
+  let start = 0
+  let end = arr.length-1;
+  while(start < end){
+    let avg = (arr[start]+arr[end]) / 2 
+    if(avg === num) return true;
+    else if(avg < num) start++
+    else end--
+  }
+  return false;
+}

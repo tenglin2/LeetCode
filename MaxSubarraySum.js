@@ -46,3 +46,34 @@ const maxSubarraySum = function(arr, sum) {
 
   return maxSum;
 };
+
+
+// I think I'm redoing it.
+const maxSubarraySum = function(arr, len) {
+  // The logic for this is to start off by just taking the first len sum and then moving the ends and comparing to other cases.
+
+  if (len > arr.length) return null;
+  
+  let maxSum = -Infinity;
+  let tempSum = 0;
+  
+  for (let i = 0; i < len; i++) {
+    tempSum += arr[i];
+  }
+
+  maxSum = tempSum;
+
+  let startPointer = 0;
+  let endPointer = len;
+
+  while (endPointer < arr.length) {
+    tempSum = tempSum - arr[startPointer] + arr[endPointer];
+    if (tempSum > maxSum) {
+      maxSum = tempSum;
+    }
+    startPointer += 1;
+    endPointer += 1;
+  }
+
+  return maxSum;
+};

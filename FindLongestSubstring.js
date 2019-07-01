@@ -23,3 +23,28 @@ const findLongestSubstring = function(str) {
 };
 
 // So you're basically iterating through each character and every time you are adding to the longest length using i - start + 1 which is the number of characters. On the case where if fails is seen[char] is already defined. In that case we set the new start equal to the next character. Little wonky.
+
+// Simpler answer...
+function findLongestSubstring(str) {
+  let count = 0;
+  let start = 0;
+  let end = 0;
+  let check = {};
+
+  while (start < str.length) {
+    if (!check[str[start]]) {
+      check[str[start]] = true;
+      start += 1;
+    } else {
+      check = {};
+      end += 1;
+      start = end;
+    }
+
+    count = Math.max(count, Object.keys(check).length);
+  }
+
+  return count;
+}
+
+// I agree with logic that empties the array but why even have an end variable? Just increment start by 1 should work.

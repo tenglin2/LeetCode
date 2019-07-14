@@ -23,3 +23,22 @@ const mergeTrees = function(t1, t2) {
 
 	return root;
 };
+
+// Rewrite for memory.
+
+const mergeTrees = function(t1, t2) {
+	// In the case where both tree nodes do not exist, return null.
+	if (!t1 && !t2) return null;
+
+	// If only one of the tree nodes exists, takes the one that exists
+	if (!t1 || !t2) return t1 || t2;
+
+	// If they both exists, then we want to create a new tree node that has the combined value of both nodes.
+	let treeNode = new TreeNode(t1.val + t2.val);
+
+	// Now we branch from this treeNode using a recursive step to merge the trees.
+	treeNode.left = mergeTrees(t1.left, t2.left);
+	treeNode.right = mergeTrees(t1.right, t2.right);
+
+	return treeNode; // We return the root node of the new tree.
+};

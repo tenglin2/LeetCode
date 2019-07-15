@@ -6,14 +6,17 @@
  * // Most obvious solution is to use recursive traversal and check if the current node matches.
  */
 const searchBST = function(root, val) {
-	const search = function(root, val) {
-		if (root.val === val) return root;
-		else if (val < root.val && root.left !== null) {
-			return search(root.left, val);
-		} else if (val > root.val && root.right !== null) {
-			return search(root.right, val);
-		} else return [];
-	};
-
-	return search(root, val);
+	if (!root) {
+		return null;
+	}
+	if (root.val === val) {
+		return root;
+	}
+	if (root.val > val) {
+		return searchBST(root.left, val);
+	} else {
+		return searchBST(root.right, val);
+	}
 };
+
+// This problem was stupid. The syntax required you to use an empty array on end case, but fails to compile when done so. The normal case of returning null works.

@@ -45,3 +45,12 @@ function deleteNth(arr, n) {
 
 	return returnArr;
 }
+
+// Here is another one that is much cleaner, here you can see that it's basically the same thing but it uses a filter method like I thought. So pretty much the same thing but executed much cleaner.
+function deleteNth(arr, x) {
+	var cache = {};
+	return arr.filter(function(n) {
+		cache[n] = (cache[n] || 0) + 1;
+		return cache[n] <= x;
+	});
+}

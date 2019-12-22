@@ -75,3 +75,29 @@ const twoSum = function(nums, target) {
 	}
 };
 // So I kinda fucked up in the beginning because I assume sorted. Also some complication with finding index if numbers are duplicate. However, the end result has a slighty (20ms) better time complexity because of the way the pointers work.
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]} contains the index of the two nums
+ */
+const twoSum = (nums, target) => {
+	// Create a hash so that you can refer to it again.
+	let hash = {};
+	let sumArray = [];
+
+	for (let i = 0; i < nums.length; i++) {
+		let numToFind = target - nums[i];
+
+		if (hash[numToFind] != undefined) {
+			sumArray.push(hash[numToFind]);
+			sumArray.push(i);
+
+			return sumArray;
+		}
+
+		hash[nums[i]] = i;
+	}
+
+	console.log('Something happened');
+};

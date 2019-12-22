@@ -29,3 +29,17 @@ const getSum = function(a, b) {
 // The loop is where I get lost. So basically which each loop it moves the carry to the left because of course it carries over. Then you & it. You use & for some reason.
 // If the place is already at 1 and you add the carry it should go to 0 which is xor.
 // My mistake, that was just the update for carry. & is here because the next carry will only happen if they are both 1. In which case you still need to shift it. That makes sense. Carry actually becomes 0 when no other places are 1. That actually makes sense.
+
+/**
+ * Sum using bitwise operations. You need a carry bit.
+ * xors the current place, ands the carry. Next spot should be 
+ */
+const getSum = function(a, b) {
+	let carry;
+
+	while (b) {
+		carry = a & b;
+		a ^= b;
+		b = carry << 1;
+	}
+};

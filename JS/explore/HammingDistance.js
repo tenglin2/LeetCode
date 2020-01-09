@@ -10,7 +10,7 @@ const hammingDistance = function(x, y) {
 	let num = x ^ y;
 	let oneCount = 0;
 	while (num !== 0) {
-		if (num & (1 === 1)) oneCount += 1;
+		if ((num & 1) === 1) oneCount += 1;
 		num = num >>> 1;
 	}
 

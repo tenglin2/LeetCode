@@ -163,3 +163,56 @@ const setZeroes = function(matrix) {
  * 0 1 2
  * I marked the column but it destroyed the row.
  */
+
+// This is a discussion solution that fixes the previous mistake. The logic is similar.
+const setZeroes = function(matrix) {
+	let zeroRow = false;
+	let zeroColumn = false;
+
+	// Basically, you need to isolate the first row and column case because the 0,0 case is ambiguous in terms of a row and/or column clear.
+	for (let i = 0; i < matrix.length; i++) {
+		if (matrix[i][0] === 0) {
+			zeroColumn = true;
+			break;
+		}
+	}
+	for (let j = 0; j < matrix[0].length; j++) {
+		if (matrix[0][j] === 0) {
+			zeroRow = true;
+			break;
+		}
+	}
+
+	// Set the flags for first row/col to 0.
+	for (let i = 1; i < matrix.length; i++) {
+		for (let j = 1; j < matrix[0].length; j++) {
+			if (matrix[i][j] === 0) {
+				matrix[i][0] = 0;
+				matrix[0][j] = 0;
+			}
+		}
+	}
+
+	// Process the ones that are not first row/col, but reference the flags.
+	for (let i = 1; i < matrix.length; i++) {
+		for (let j = 1; j < matrix[0].length; j++) {
+			if (matrix[i][0] === 0 || matrix[0][j] === 0) {
+				matrix[i][j] = 0;
+			}
+		}
+	}
+
+	// Now handle the first row and/or column.
+	if (zeroColumn) {
+		for (let i = 0; i < matrix.length; i++) {
+			matrix[i][0] = 0;
+		}
+	}
+	if (zeroRow) {
+		for (let j = 0; j < matrix[0].length; j++) {
+			matrix[0][j] = 0;
+		}
+	}
+};
+
+// So the hard part about this was understanding that the first element index 0, 0 is a special case that doesn't work if you use the normal flags because the clearing is ambiguous. The question itself kinda sucks too because you need to use a bunch of for loops when are terrible for time complexity. Your initial approach didn't work because you were suppose to set the flag and use it for solely the inner portion.
